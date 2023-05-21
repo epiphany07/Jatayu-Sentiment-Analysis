@@ -1,0 +1,56 @@
+<html>
+    <head>
+	<style>
+table, th, td {
+  border: 1px solid black;
+}
+</style>
+        <title>{{ title }} Sentiment Analysis</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+      
+        <h1>Welcome To Sentiment Analyzer</h1>
+        <form method="POST">
+            <textarea name="text1" placeholder="Say Something: ...." rows="10" cols="109"></textarea><br><br>
+
+            <input class="example_a" type="submit">
+        </form>
+        <h1>Dataset Upload</h1>
+    <form action="/upload" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <br>
+        <input type="submit" value="Upload">
+    </form>
+        {% if final %}
+        <div>
+
+            
+			<h2>Sentiment analysis</h2>
+
+
+
+<table style="width:100%">
+  <tr>
+    <th>S.NO</th>
+    <th>TEXT</th>
+    <!-- <th>TRANSLATED TEXT</th>  -->
+    <th>POSITIVE SCORE</th>
+    <th>NEGATIVE SCORE</th>
+  </tr>
+  {% for row in data %}
+  <tr>
+    {% for cell in row %}
+    <td>{{ cell }}</td>
+    {% endfor %}
+  </tr>
+  {% endfor %}
+
+
+</table>
+            {% else %}
+            <p></p>
+            {% endif %}
+        </div>
+    </body>
+</html>
